@@ -6,13 +6,13 @@ port=666
 i=0
 s.connect((host,port))
 s.send(b"HELLO.\n")
-s.send(b"DOWNLOAD.\n")
+s.send(b"DOWNLOAD.\n:")
 while 1 :
-            msg=s.recv(10)
-            print(msg)      
-            if msg=='b': 
-             break
-                   
+            msg=s.recv(1024)
+            if not msg:
+                        break
+            print(msg)
+
 s.close()
 
 
