@@ -9,20 +9,23 @@ s.send(b"HELLO.\n")
 s.send(b"DOWNLOAD.\n:")
 data=b""
 m=0
+k=0
 with open ('abc.txt','wb') as f:
     while 1:
         msg=s.recv(1024)
         if not msg:
-            break
+                   break
         else:
-            print(msg)
+#            print(msg)
             data+=msg
             pos=pos+1
         if pos>=5:
-#                  print(msg)
+                 print(msg)
+                 m =msg.find(b"TOKEN")
+                 if m==62587:
+                              break
                  f.write(msg)
-                 if pos==630:
-                                break
+print(m)
 s.close()
 
 
