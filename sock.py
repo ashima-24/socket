@@ -19,9 +19,10 @@ with open ('abc.txt','wb') as f:
             data+=msg
             pos=pos+1
         if pos>=5:
-                f.write(msg)
-                if msg.find(b"TOKEN"):
-                                      break
+#                  print(msg)
+                 f.write(msg)
+                 if pos==630:
+                                break
 s.close()
-print(pos)
+
 

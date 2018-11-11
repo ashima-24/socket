@@ -1,3 +1,6 @@
-fh = open("Untitled document.txt", "wb")
-fh.write(str.decode(fh))
+fh = open("abc.txt", 'rb')
+fh.seek(0)
+fh.read(0)
+fh.seek(5)
+fh.read(5)
 fh.close()
