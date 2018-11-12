@@ -14,18 +14,19 @@ with open ('abc.txt','wb') as f:
     while 1:
         msg=s.recv(1024)
         if not msg:
-                   break
+            break
         else:
-#            print(msg)
+            #            print(msg)
             data+=msg
             pos=pos+1
         if pos>=5:
                  print(msg)
-                 m =msg.find(b"TOKEN")
+                 m=data.find(b"TOKEN")
                  if m==62587:
-                              break
+                             break
                  f.write(msg)
 print(m)
+print(pos)
 s.close()
 
 

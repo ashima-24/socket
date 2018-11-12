@@ -7,21 +7,17 @@ s.connect((host,port))
 s.send(b"HELLO.\n")
 s.send(b"DOWNLOAD.\n:")
 data=b""
-m=0
-k=0
 with open ('conv.txt','wb') as f:
-      while 1:
-          msg=s.recv(1024)
-          if not msg:
-                     break
-          else:
-  #            print(msg)
-              data+=msg
-              pos=pos+1
-          if pos>=5:
-                   print(msg)
-                   m =data.find(b"TOKEN")
-                 #  if m==62587:
-                  #             break
-                   f.write(msg)
+    while 1:
+        msg=s.recv(1024)
+        if not msg:
+                   break
+        else:
+             data+=msg
+             #print(msg)
+             f.write(msg)
+file=open("conv.txt",'r')
+file.seek(56)
+file.read(56)
+
 s.close()
