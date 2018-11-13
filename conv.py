@@ -15,9 +15,8 @@ with open ('conv.txt','wb') as f:
         else:
              data+=msg
              #print(msg)
-             f.write(msg)
-file=open("conv.txt",'r')
+#             f.write(msg)
+file=open("conv.txt",'rb+')
 file.seek(56)
-file.read(56)
-
+file.write(b"62531")
 s.close()
