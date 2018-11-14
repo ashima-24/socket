@@ -1,45 +1,45 @@
 import socket
-S = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 HOST = 'snoopy.mpi-inf.mpg.de'
 PORT = 666
-S.connect((HOST, PORT))
-S.send(b"HELLO.\n")
-S.send(b"DOWNLOAD.\n:")
-DATA = b""
+s.connect((HOST, PORT))
+s.send(b"HELLO.\n")
+s.send(b"DOWNLOAD.\n:")
+data = b""
 while 1:
-       MSG = S.recv(1024)
-       if not MSG:
+       msg = s.recv(1024)
+       if not msg:
                  break
        else:
-           DATA += MSG
+            data += msg
 
-START = DATA.split(b'\n')
-HELO = DATA.split(b'\n')[0]
-print(HELO)
-COMAND = DATA.split(b'\n')[1]
-print(COMAND)
-FIL = DATA.split(b'\n')[2]
-print(FIL)
-B = DATA.split(b'\n')[3]
-print(B)
-IMG = B.split()[1]
-print(IMG) # no of bytes of images
+start = data.split(b'\n')
+helo = data.split(b'\n')[0]
+print(helo)
+comand = data.split(b'\n')[1]
+print(comand)
+fil = data.split(b'\n')[2]
+print(fil)
+b = data.split(b'\n')[3]
+print(b)
+img = b.split()[1]
+print(img) # no of bytes of images
 
-H = DATA.split(b'BYTES')
-T = H[1].split(b'TOKEN')
+H = data.split(b'BYTES')
+t = H[1].split(b'TOKEN')
 
-IMG1 = bytearray(T[0])
-IMG3 = IMG1.lstrip(b'\n')
-print(IMG3)   # raw bytes of image
+img1 = bytearray(t[0])
+img3 = img1.lstrip(b'\n')
+print(img3)   # raw bytes of image
 
-with open('CAT.jpeg', 'wb') as I:
-    I.write(IMG3)
+with open('CAT.jpeg', 'wb') as i:
+    i.write(img3)
 
-TOK = T[1].split(b'\n')
-TOKEN = TOK[0].split(b':')
-print(TOKEN[1])  # 32 bit token
+tok = t[1].split(b'\n')
+token = tok[0].split(b':')
+print(token[1])  # 32 bit token
 
-with open('TOKEN.txt', 'wb') as W:
-    W.write(TOKEN[1])
+with open('TOKEN.txt', 'wb') as w:
+    w.write(token[1])
 
-S.close()
+s.close()
