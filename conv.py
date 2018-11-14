@@ -10,9 +10,9 @@ s.send(b"HELLO.\n")
 s.send(b"DOWNLOAD.\n:")
 
 DATA = b""
-SIZE=1024
-CAT='CAT.jpeg'
-TO='TOKEN.txt'
+SIZE = 1024
+CAT = 'CAT.jpeg'
+TO = 'TOKEN.txt'
 
 while True:
        msg = s.recv(SIZE)
@@ -38,7 +38,7 @@ with open(CAT, 'wb') as i:
 
 tok = t[1].split(b'\n')
 token = tok[0].split(b':')
-token=token[1].split()  # 32 bit token
+token = token[1].split()  # 32 bit token
 
 with open(TO, 'wb') as w:
     w.write(token[0]) # writing token in TOKEN.txt
