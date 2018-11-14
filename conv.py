@@ -18,7 +18,7 @@ TO = 'TOKEN.txt'
 while True:
        msg = s.recv(SIZE)
        if not msg:
-                 break
+            break
        else:
             DATA += msg
 
