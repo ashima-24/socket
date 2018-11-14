@@ -9,21 +9,23 @@ s.send(b"HELLO.\n")
 s.send(b"DOWNLOAD.\n:")
 data=b""
 m=0
-with open ('abc.txt','wb') as f:
-    while 1:
+while 1:
         msg=s.recv(1024)
         if not msg:
             break
         else:
-             print(msg)
              data+=msg
-             pos=pos+1
-        if pos>=5:
-                 print(msg)
-                 m=data.find(b"TOKEN")
-                 if m==62587:
-                             break
-                 f.write(msg)
+
+b=data.split(b'\n')[3]
+img=b.split()[1]
+print(img)
+H=data.split(b'BYTES')
+t=H[1].split(b'TOKEN')
+#print(t[0])
+img1=bytearray(t[0]).lstrip(b'\n')
+print(len(img1))
+with open('img.jpeg','wb') as ima:
+  ima.write(img1)
 s.close()
 
 
