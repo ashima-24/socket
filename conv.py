@@ -1,5 +1,4 @@
 import socket
-
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 HOST = 'snoopy.mpi-inf.mpg.de'
@@ -11,9 +10,12 @@ s.send(b"HELLO.\n")
 s.send(b"DOWNLOAD.\n:")
 
 data = b""
+size=1024
+cat='CAT.jpeg'
+to='TOKEN.txt'
 
 while 1:
-       msg = s.recv(1024)
+       msg = s.recv(size)
        if not msg:
                  break
        else:
@@ -21,34 +23,27 @@ while 1:
 
 start = data.split(b'\n')
 helo = data.split(b'\n')[0]
-print(helo)
 comand = data.split(b'\n')[1]
-print(comand)
 fil = data.split(b'\n')[2]
-print(fil)
 b = data.split(b'\n')[3]
-print(b)
-img = b.split()[1]
-print(img) # no of bytes of images
+img = b.split()[1] # no of bytes of images
 
 H = data.split(b'BYTES')
 t = H[1].split(b'TOKEN')
 
 img1 = bytearray(t[0])
-img3 = img1.lstrip(b'\n')
-print(img3)   # raw bytes of image
+img3 = img1.lstrip(b'\n')  # raw bytes of image
 
 
-with open('CAT.jpeg', 'wb') as i:
+with open(cat, 'wb') as i:
     i.write(img3)   # writing image in CAT.jpeg
 
 
 tok = t[1].split(b'\n')
 token = tok[0].split(b':')
-token=token[1].split()
-print(token[0])  # 32 bit token
+token=token[1].split()  # 32 bit token
 
-with open('TOKEN.txt', 'wb') as w:
+with open(to, 'wb') as w:
     w.write(token[0]) # writing token in TOKEN.txt
 
 s.close()
